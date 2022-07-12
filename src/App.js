@@ -5,6 +5,8 @@ import Gallery from "./components/Gallery";
 import ContactForm from "./components/Contact";
 
 function App() {
+  // State set to false to not show part of site
+  const [contactSelected, setContactSelected] = useState(false);
   const [categories] = useState([
     {
       name: "commercial",
@@ -27,11 +29,20 @@ function App() {
         categories={categories}
         setCurrentCategory={setCurrentCategory}
         currentCategory={currentCategory}
+        contactSelected={contactSelected}
+        setContactSelected={setContactSelected}
       ></Nav>
       <main>
-        <ContactForm></ContactForm>
-        <Gallery currentCategory={currentCategory}></Gallery>
-        <About></About>
+        {/* Ternary operator rendering different parts of a page */}
+        {!contactSelected ? (
+          // React fragments
+          <>
+            <Gallery currentCategory={currentCategory}></Gallery>
+            <About></About>
+          </>
+        ) : (
+          <ContactForm></ContactForm>
+        )}
       </main>
     </div>
   );
