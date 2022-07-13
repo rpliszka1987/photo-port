@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 
-function Modal() {
+function Modal({ currentPhoto }) {
+  // Deconstruct props
+  const { name, category, description, index } = currentPhoto;
   return (
     // Create a modal
     <div className="modalBackdrop">
       {/* Title */}
-      <h3 className="modalTitle">Photo Name</h3>
+      <h3 className="modalTitle">{name}</h3>
       {/* Image */}
-      <img alt="current category" />
+      <img
+        src={require(`../../assets/large/${category}/${index}.jpg`)}
+        alt="current category"
+      />
       {/* Image description */}
-      <p>Photo Description</p>
+      <p>{description}</p>
       {/* Close modal */}
       <button type="button">Close this modal</button>
     </div>
